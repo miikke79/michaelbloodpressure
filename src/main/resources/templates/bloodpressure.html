@@ -1,0 +1,36 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Bloodpressure</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css"
+	th:href="@{css/bootstrap.min.css}" />
+</head>
+<body class="bg-light">
+	<div class="container">
+		<div>
+			<h3>Bloodpressure Readings</h3>
+		</div>
+		<table class="table table-striped">
+			<tr>
+				<th>Upper Reading</th>
+				<th>Lower Reading</th>
+				<th>Pulse Rate</th>
+				<th>Date</th>
+			</tr>
+			<tr th:each="bloodpressure : ${bloodpressures}">
+				<td th:text="${bloodpressure.upper}"></td>
+				<td th:text="${bloodpressure.lower}"></td>
+				<td th:text="${bloodpressure.pulse}"></td>
+				<td th:text="${bloodpressure.date}"></td>
+				<td><a th:href="@{/delete/{id}(id=${bloodpressure.id})}"
+					class="btn btn-danger">Delete</a>
+					
+						<a th:href="@{/editreading/{id}(id=${bloodpressure.id})}" class="btn btn-warning">Edit Entry</a>
+					</td>
+			</tr>
+		</table>
+		<a href="/addreading" class="btn btn-success">Add New Entry</a>
+	</div>
+</body>
+</html>
