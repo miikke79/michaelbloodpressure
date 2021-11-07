@@ -19,7 +19,13 @@ import com.example.bloodpressureapp.domain.Bloodpressurerepository;
 public class BloodController {
 	@Autowired
 	private Bloodpressurerepository repository;
+	
+	@RequestMapping(value = "/login")
+	public String login() {
+		return "login";
 
+	}
+	
 	@RequestMapping(value = { "/", "/bloodpressure" })
 	public String bloodPressure(Model model) {
 		model.addAttribute("bloodpressures", repository.findAll());
@@ -43,6 +49,7 @@ public class BloodController {
 	public String modifyRecord(@PathVariable("id") Long recordId, Model model) {
 		Optional<Bloodpressure> record = repository.findById(recordId);
 		model.addAttribute("bloodpressure", record);
+		
 		return "editreading";
 	}
 	
@@ -51,5 +58,6 @@ public class BloodController {
 		repository.save(newReading);
 		return "redirect:bloodpressure";
 	}
+	
 
 }

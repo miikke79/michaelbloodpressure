@@ -5,18 +5,25 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css"
 	th:href="@{css/bootstrap.min.css}" />
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.0/font/bootstrap-icons.css">
 </head>
-<body class="bg-light">
+<body class="text-light bg-dark">
 	<div class="container">
-		<div>
-			<h3>Bloodpressure Readings</h3>
-		</div>
-		<table class="table table-striped">
+		<br>
+		<h3 class="text-danger">
+			<!-- [[${#httpServletRequest.remoteUser}]]'s  -->
+			Blood Pressure Readings
+		</h3>
+		<table class="table table-dark">
 			<tr>
 				<th>Upper Reading</th>
 				<th>Lower Reading</th>
 				<th>Pulse Rate</th>
 				<th>Date</th>
+				<th><a href="/addreading" class="btn btn-outline-primary"><i
+						class="bi bi-journal-medical"></i>&nbsp&nbsp&nbsp Enter New Record
+						&nbsp&nbsp&nbsp&nbsp <i></i></a></th>
 			</tr>
 			<tr th:each="bloodpressure : ${bloodpressures}">
 				<td th:text="${bloodpressure.upper}"></td>
@@ -24,13 +31,19 @@
 				<td th:text="${bloodpressure.pulse}"></td>
 				<td th:text="${bloodpressure.date}"></td>
 				<td><a th:href="@{/delete/{id}(id=${bloodpressure.id})}"
-					class="btn btn-danger">Delete</a>
-					
-						<a th:href="@{/editreading/{id}(id=${bloodpressure.id})}" class="btn btn-warning">Edit Entry</a>
-					</td>
+					class="btn btn-outline-warning bg-danger"><i
+						class="bi bi-trash"></i> Delete</a> <a
+					th:href="@{/editreading/{id}(id=${bloodpressure.id})}"
+					class="btn btn-outline-success"><i class="bi bi-pencil-square"></i>
+						Edit Entry</a></td>
 			</tr>
 		</table>
-		<a href="/addreading" class="btn btn-success">Add New Entry</a>
+		<div>
+			<form th:action="@{/logout}" method="post">
+				<input type="submit" value="Sign Out" class="btn btn-outline-light" />
+
+			</form>
+		</div>
 	</div>
 </body>
 </html>

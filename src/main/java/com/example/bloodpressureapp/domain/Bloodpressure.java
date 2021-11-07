@@ -7,6 +7,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 @Entity
 public class Bloodpressure {
 	@Id
@@ -14,7 +16,8 @@ public class Bloodpressure {
 	private Long id;
 	private int upper;
 	private int lower;
-	private int pulse;
+	private int pulse;	
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate date;
 
 	public Bloodpressure() {
@@ -22,7 +25,6 @@ public class Bloodpressure {
 
 	public Bloodpressure(int upper, int lower, int pulse, LocalDate date) {
 		super();
-		this.id = id;
 		this.upper = upper;
 		this.lower = lower;
 		this.pulse = pulse;
