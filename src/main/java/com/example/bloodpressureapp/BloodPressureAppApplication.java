@@ -25,7 +25,7 @@ public class BloodPressureAppApplication {
 	}
 
 	@Bean
-	public CommandLineRunner studentDemo(Bloodpressurerepository repository, Userrepository urepository) {
+	public CommandLineRunner bpDemo(Bloodpressurerepository repository, Userrepository urepository) {
 		return (args) -> {
 			log.info("save a couple of records");
 			repository.save(new Bloodpressure(90, 65, 65, LocalDate.of(2021, 11, 05)));
